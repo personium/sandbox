@@ -49,8 +49,8 @@ jobs:
     - name: Create Release
       uses: softprops/action-gh-release@v1
       with:
-        name: "Release v${{ RELEASE_VERSION }}"
-        tag_name: "v${{ RELEASE_VERSION }}"
+        name: "Release v${{ env.RELEASE_VERSION }}"
+        tag_name: "v${{ env.RELEASE_VERSION }}"
         body_path: ${{ github.workflow }}_CHANGELOG.md
         draft: True
         prerelease: False
