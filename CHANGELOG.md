@@ -1,3 +1,7 @@
+## 1.1.3
+
+  Test for GitHub Actions.
+  CHANGELOG.md is read in shell script
 
 ## 1.1.2
 
