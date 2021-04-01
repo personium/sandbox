@@ -15,7 +15,7 @@ jobs:
     steps:
     - name: Get Component Name
       run: |
-        echo "COMPONENT=$(echo $GITHUB_REPOSITORY | awk -F '/' '{ print $2 }'" >> $GITHUB_ENV
+        echo "COMPONENT=$(echo $GITHUB_REPOSITORY | awk -F '/' '{ print $2 }')" >> $GITHUB_ENV
 
     - name: Get Release Version String
       run: |
