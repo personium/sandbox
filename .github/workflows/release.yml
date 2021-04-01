@@ -11,19 +11,23 @@ jobs:
     env:
       GITHUB_USER: personiumio
       GITHUB_TOKEN: ${{ secrets.PERSONIUM_GITHUB_TOKEN }}
-      COMPONENT: personium-core
 
     steps:
-    - name: git settings
+    - name: Get Component Name
       run: |
-        git config --global user.name "Personium Bot"
-        git config --global user.email "personium.io@gmail.com"
-        git clone https://github.com/personium/${COMPONENT}.git .
-        git checkout master
+        echo "COMPONENT=$(echo $GITHUB_REPOSITORY | awk -F '/' '{ print $2 }'" >> $GITHUB_ENV
 
     - name: Get Release Version String
       run: |
         echo "RELEASE_VERSION=$(cat CHANGELOG.md | grep -m 1 -E '## .+' | awk '{ print $2 }')" >> $GITHUB_ENV
+
+    - name: git settings
+      run: |
+        git config --global user.name "Personium Bot"
+        git config --global user.email "personium.io@gmail.com"
+        git clone https://github.com/${GITHUB_REPOSITORY}.git .
+        git checkout master
+
 
     - name: Remove -SNAPSHOT from pom.xml on master branch
       run: |

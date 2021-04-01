@@ -22,7 +22,7 @@ import base64
 import json
 import os
 
-url = 'https://api.github.com/repos/personium/%s/releases' % os.environ['COMPONENT']
+url = 'https://api.github.com/repos/%s/releases' % os.environ['GITHUB_REPOSITORY']
 user = os.environ['GITHUB_USER']
 password = os.environ['GITHUB_TOKEN']
 version = os.environ['RELEASE_VERSION']
