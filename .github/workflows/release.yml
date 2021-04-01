@@ -44,8 +44,22 @@ jobs:
 
     - name: Create Release Note
       run: |
-        python3 ./.github/workflows/scripts/create-release-note.py
+        awk '/##/{i++}i==1' CHANGELOG.md | tail +2 > ${GITHUB_WORKFLOW}_CHANGELOG.md
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        name: "Release v${{ RELEASE_VERSION }}"
+        tag_name: "v${{ RELEASE_VERSION }}"
+        body_path: ${{ github.workflow }}_CHANGELOG.md
+        draft: True
+        prerelease: False
 
     - name: Update versions on develop branch
       run: |
         bash ./.github/workflows/scripts/update-version.sh
+
+    # - name: Build with maven
+    #   run: mvn -B package --file pom.xml -DskipTests
+    
+
