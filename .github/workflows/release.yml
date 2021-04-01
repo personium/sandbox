@@ -43,9 +43,8 @@ jobs:
         bash ./.github/workflows/scripts/remove-SNAPSHOT.sh
 
     - name: Create Release Note
-      run: |
-        awk '/##/{i++}i==1' CHANGELOG.md | tail +2 > ${GITHUB_WORKFLOW}_CHANGELOG.md
-
+      run: awk '/##/{i++}i==1' CHANGELOG.md | tail +2 > ${{ github.workflow }}_CHANGELOG.md
+ 
     - name: Create Release
       uses: softprops/action-gh-release@v1
       with:
@@ -54,6 +53,9 @@ jobs:
         body_path: ${{ github.workflow }}_CHANGELOG.md
         draft: True
         prerelease: False
+    
+    - name: Delete Temporary Release Note
+      run: rm ${{ github.workflow }}_CHANGELOG.md
 
     - name: Update versions on develop branch
       run: |
