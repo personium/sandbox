@@ -46,7 +46,7 @@ jobs:
       run: awk '/##/{i++}i==1' CHANGELOG.md | tail +2 > ${{ github.workflow }}_CHANGELOG.md
 
     - name: Build with maven
-      run: mvn -B package --file pom.xml -DskipTests
+      run: mvn -B package --file pom.xml -DskipTests && mv target/${{ env.COMPONENT }}.war target/${{ env.COMPONENT }}-${{ env.RELEASE_VERSION }}.war
  
     - name: Create Release
       uses: softprops/action-gh-release@v1
@@ -56,7 +56,7 @@ jobs:
         body_path: ${{ github.workflow }}_CHANGELOG.md
         draft: True
         files: |
-          target/sandbox.war
+          target/${{ env.COMPONENT }}-${{ env.RELEASE_VERSION }}.war
         prerelease: False
     
     - name: Delete Temporary Release Note
