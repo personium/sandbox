@@ -17,14 +17,6 @@ jobs:
       run: |
         echo "COMPONENT=$(echo $GITHUB_REPOSITORY | awk -F '/' '{ print $2 }')" >> $GITHUB_ENV
 
-    - name: Get Release Version String
-      run: |
-        echo "RELEASE_VERSION=$(cat CHANGELOG.md | grep -m 1 -E '## .+' | awk '{ print $2 }')" >> $GITHUB_ENV
-
-    - name: Debug Env value
-      run: |
-        env
-
     - name: git settings
       run: |
         git config --global user.name "Personium Bot"
@@ -32,6 +24,9 @@ jobs:
         git clone https://github.com/${GITHUB_REPOSITORY}.git .
         git checkout master
 
+    - name: Get Release Version String
+      run: |
+        echo "RELEASE_VERSION=$(cat CHANGELOG.md | grep -m 1 -E '## .+' | awk '{ print $2 }')" >> $GITHUB_ENV
 
     - name: Remove -SNAPSHOT from pom.xml on master branch
       run: |
