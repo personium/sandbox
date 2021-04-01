@@ -21,6 +21,10 @@ jobs:
       run: |
         echo "RELEASE_VERSION=$(cat CHANGELOG.md | grep -m 1 -E '## .+' | awk '{ print $2 }')" >> $GITHUB_ENV
 
+    - name: Debug Env value
+      run: |
+        env
+
     - name: git settings
       run: |
         git config --global user.name "Personium Bot"
