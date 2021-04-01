@@ -18,6 +18,8 @@ jobs:
       run: |
         git config --global user.name "Personium Bot"
         git config --global user.email "personium.io@gmail.com"
+        git clone https://github.com/personium/${COMPONENT}.git .
+        git checkout master
 
     - name: Remove -SNAPSHOT from pom.xml on master branch
       run: |
