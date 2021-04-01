@@ -25,6 +25,7 @@ import os
 url = 'https://api.github.com/repos/personium/%s/releases' % os.environ['COMPONENT']
 user = os.environ['GITHUB_USER']
 password = os.environ['GITHUB_TOKEN']
+version = os.environ['RELEASE_VERSION']
 basic_user_and_pasword = base64.b64encode('{}:{}'.format(user, password).encode('utf-8'))
 headers = {
   'Content-Type': 'application/json',
