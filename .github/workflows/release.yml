@@ -44,6 +44,9 @@ jobs:
 
     - name: Create Release Note
       run: awk '/##/{i++}i==1' CHANGELOG.md | tail +2 > ${{ github.workflow }}_CHANGELOG.md
+
+    - name: Build with maven
+      run: mvn -B package --file pom.xml -DskipTests
  
     - name: Create Release
       uses: softprops/action-gh-release@v1
@@ -52,6 +55,8 @@ jobs:
         tag_name: "v${{ env.RELEASE_VERSION }}"
         body_path: ${{ github.workflow }}_CHANGELOG.md
         draft: True
+        files: |
+          target/sandbox.war
         prerelease: False
     
     - name: Delete Temporary Release Note
@@ -61,7 +66,5 @@ jobs:
       run: |
         bash ./.github/workflows/scripts/update-version.sh
 
-    # - name: Build with maven
-    #   run: mvn -B package --file pom.xml -DskipTests
     
 
