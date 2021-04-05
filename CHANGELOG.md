@@ -1,3 +1,8 @@
+## 1.1.4
+
+  Test for GitHub Actions.
+  This is CHANGELOG for version 1.1.4
+
 ## 1.1.3
 
   Test for GitHub Actions.
