@@ -34,19 +34,22 @@ jobs:
       run: |
         echo "COMPONENT=$(echo $GITHUB_REPOSITORY | awk -F '/' '{ print $2 }')" >> $GITHUB_ENV
 
-    - name: Get Release Version String
+    - name: Remove -SNAPSHOT from pom.xml, and get release string which is to be released.
       run: |
-        echo "RELEASE_VERSION=$(cat CHANGELOG.md | grep -m 1 -E '## .+' | awk '{ print $2 }')" >> $GITHUB_ENV
+        mvn -B versions:set -DremoveSnapshot && mvn -B versions:commit
+        echo "RELEASE_VERSION=$(mvn -B help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
 
-    - name: Remove -SNAPSHOT from pom.xml on master branch
+    - name: Commit and push
       run: |
-        bash ./.github/workflows/scripts/remove-SNAPSHOT.sh
+         git add pom.xml
+         git commit -m "Update to v${RELEASE_VERSION}"
+         git push origin master
 
     - name: Create Release Note
       run: awk '/##/{i++}i==1' CHANGELOG.md | tail +2 > ${{ github.workflow }}_CHANGELOG.md
 
     - name: Build with maven
-      run: mvn -B package --file pom.xml -DskipTests && mv target/${{ env.COMPONENT }}.war target/${{ env.COMPONENT }}-${{ env.RELEASE_VERSION }}.war
+      run: mvn -B package --file pom.xml -DskipTests
  
     - name: Create Release
       uses: softprops/action-gh-release@v1
