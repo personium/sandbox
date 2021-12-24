@@ -3,7 +3,7 @@ name: Release
 on:
   pull_request:
     branches: [ master ]
-    types: [closed]
+    types: [ closed ]
 
 jobs:
   build:
@@ -42,6 +42,10 @@ jobs:
         mvn -B versions:set -DremoveSnapshot && mvn -B versions:commit
         echo "RELEASE_VERSION=$(mvn -B help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
 
+    - name: Get extension of artifact
+      run: |
+        echo "EXT_PACKAGING=$mvn -B help:evaluate -Dexpression=project.packaging -q -DforceStdout)" >> $GITHUB_ENV
+
     - name: Commit and push
       run: |
          git add pom.xml
@@ -62,8 +66,9 @@ jobs:
         body_path: ${{ github.workflow }}_CHANGELOG.md
         draft: True
         files: |
-          target/${{ env.COMPONENT }}-${{ env.RELEASE_VERSION }}.war
+          target/${{ env.COMPONENT }}-${{ env.RELEASE_VERSION }}.${{ env.EXT_PACKAGING }}
         prerelease: False
+        target_commitish: master
     
     - name: Delete Temporary Release Note
       run: rm ${{ github.workflow }}_CHANGELOG.md
