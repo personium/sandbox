@@ -16,14 +16,14 @@ NEXT_RELEASE_VERSION=$(
 if [ "${COMPONENT}" = "personium-core" -o "${COMPONENT}" = "personium-engine" ]; then
   # update version in personium-unit-config-default.properties
   sed -i \
-    "s|^\(io\.personium\.core\.version=\).*\$|\1${RELEASE_VERSION}|" \
+    "s|^\(io\.personium\.core\.version=\).*\$|\1${NEXT_RELEASE_VERSION}|" \
     src/main/resources/personium-unit-config-default.properties
 fi
 
 # Git commit and push
 git diff
 git add .
-git commit -m "Update to v${NEXT_RELEASE_VERSION}"
+git commit -m "Update to v${NEXT_RELEASE_VERSION}-SNAPSHOT"
 git push origin develop
 
 echo 'Suceeded!'
