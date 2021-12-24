@@ -16,6 +16,5 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>sandbox</finalName>
     </build>
 </project>
