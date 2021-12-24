@@ -47,9 +47,9 @@ jobs:
 
     - name: Commit and push
       run: |
-         git add pom.xml
-         git commit -m "Update to v${RELEASE_VERSION}"
-         git push origin master
+        git add pom.xml
+        git commit -m "Update to v${RELEASE_VERSION}"
+        git push origin master
 
     - name: Create Release Note
       run: awk '/##/{i++}i==1' CHANGELOG.md | tail +2 > ${{ github.workflow }}_CHANGELOG.md
