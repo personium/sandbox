@@ -16,7 +16,6 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.PERSONIUM_GITHUB_TOKEN }}
 
     steps:
-
     - name: git settings
       run: |
         if [ -z "$GITHUB_USER" -o -z "$GITHUB_TOKEN" ]; then
@@ -39,7 +38,7 @@ jobs:
 
     - name: Remove -SNAPSHOT from pom.xml, and get release string which is to be released.
       run: |
-        mvn -B versions:set -DremoveSnapshot && mvn -B versions:commit
+        sed -i 's|\-SNAPSHOT||' pom.xml
         echo "RELEASE_VERSION=$(mvn -B help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
 
     - name: Get extension of artifact
@@ -69,7 +68,7 @@ jobs:
           target/${{ env.COMPONENT }}-${{ env.RELEASE_VERSION }}.${{ env.EXT_PACKAGING }}
         prerelease: False
         target_commitish: master
-    
+
     - name: Delete Temporary Release Note
       run: rm ${{ github.workflow }}_CHANGELOG.md
 
