@@ -17,7 +17,7 @@
         <dependency>
             <groupId>io.personium</groupId>
             <artifactId>personium-lib-common</artifactId>
-            <version>1.5.4</version>
+            <version>1.5.4-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <build>
