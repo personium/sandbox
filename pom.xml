@@ -4,7 +4,7 @@
     <groupId>io.personium</groupId>
     <artifactId>sandbox</artifactId>
     <packaging>war</packaging>
-    <version>1.1.16</version>
+    <version>1.1.17-SNAPSHOT</version>
     <name>sandbox Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>
@@ -17,7 +17,7 @@
         <dependency>
             <groupId>io.personium</groupId>
             <artifactId>personium-lib-common</artifactId>
-            <version>1.5.4</version>
+            <version>1.5.5-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <build>
@@ -42,4 +42,18 @@
             </plugin>
         </plugins>
     </build>
+    <repositories>
+        <repository>
+            <id>snapshots</id>
+            <name>Nexus Snapshots Repository</name>
+            <layout>default</layout>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>
