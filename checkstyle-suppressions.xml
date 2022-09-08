@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+    "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+<suppressions>
+  <suppress checks="." files="net[\\/]oauth[\\/]"/>
+  <suppress checks="." files="CipherInputStream\.java"/>
+  <suppress checks="." files="PersoniumFixedWindowRollingPolicy\.java"/>
+  <suppress checks="MethodName" files=".*Test\.java"/>
+  <suppress checks="MagicNumber" files=".*Test\.java"/>
+  <suppress checks="JavadocPackage" files="[\\/]test[\\/]"/>
+</suppressions>
