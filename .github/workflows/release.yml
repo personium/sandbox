@@ -102,8 +102,10 @@ jobs:
       with:
         base: master
         branch: develop
-        title: 'Release v${{ env.NEXT_RELEASE }}'
-        commit-message: "Update to v${{ env.NEXT_SNAPSHOT_VERSION}}"
+        title: 'Release v${{ env.NEXT_VERSION }}'
+        commit-message: "Update to v${{ env.NEXT_SNAPSHOT_VERSION }}"
+        commiter: "Personium Bot <personium.io@gmail.com>"
+        author: "Personium Bot <personium.io@gmail.com>"
         add-paths: |
           pom.xml
           src/main/**/*.properties
