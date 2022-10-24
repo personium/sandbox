@@ -106,5 +106,4 @@ jobs:
         commit-message: "Update to v${{ env.NEXT_SNAPSHOT_VERSION}}"
         add-paths: |
           pom.xml
-          src/main/resources/personium-unit-config-default.properties
-          src/main/hoge/properties.dummy
+          src/main/**/*.properties
