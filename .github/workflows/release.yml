@@ -104,7 +104,7 @@ jobs:
         branch: develop
         title: 'Release v${{ env.NEXT_VERSION }}'
         commit-message: "Update to v${{ env.NEXT_SNAPSHOT_VERSION }}"
-        commiter: "Personium Bot <personium.io@gmail.com>"
+        committer: "Personium Bot <personium.io@gmail.com>"
         author: "Personium Bot <personium.io@gmail.com>"
         add-paths: |
           pom.xml
