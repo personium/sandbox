@@ -86,11 +86,13 @@ jobs:
         echo "NEXT_VERSION=$NEXT_VERSION" >> $GITHUB_ENV
     
     - name: Update version in properties
+      if: ${{ env.COMPONENT == 'personium-core' || env.COMPONENT == 'personium-engine' || env.COMPONENT == 'sandbox'}}
       run: |
         sed -i "s|^\(io\.personium\.core\.version=\).*|\1${NEXT_VERSION}|" src/main/resources/personium-unit-config-default.properties
+        git add src/main/resources/personium-unit-config-default.properties
 
     - name: Update versions on develop branch
       run: |
-        git add pom.xml src/main/resources/personium-unit-config-default.properties
+        git add pom.xml
         git commit -m "Update to v${NEXT_SNAPSHOT_VERSION}"
         git push origin develop
