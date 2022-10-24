@@ -102,6 +102,7 @@ jobs:
       with:
         base: master
         branch: develop
+        token: ${{ secrets.PERSONIUM_GITHUB_TOKEN }}
         title: 'Release v${{ env.NEXT_VERSION }}'
         commit-message: "Update to v${{ env.NEXT_SNAPSHOT_VERSION }}"
         committer: "Personium Bot <personium.io@gmail.com>"
