@@ -91,6 +91,6 @@ jobs:
 
     - name: Update versions on develop branch
       run: |
-        git add pom.xml src/main/resources/personium-unit-config.properties
+        git add pom.xml src/main/resources/personium-unit-config-default.properties
         git commit -m "Update to v${NEXT_SNAPSHOT_VERSION}"
         git push origin develop
