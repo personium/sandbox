@@ -96,3 +96,10 @@ jobs:
         git add pom.xml
         git commit -m "Update to v${NEXT_SNAPSHOT_VERSION}"
         git push origin develop
+
+    - name: Create pull request for next release
+      uses: peter-evans/create-pull-request@v4
+      with:
+        base: develop
+        branch: master
+        title: 'Release v${{ env.NEXT_RELEASE }}'
