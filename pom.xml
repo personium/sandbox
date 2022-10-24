@@ -4,7 +4,7 @@
     <groupId>io.personium</groupId>
     <artifactId>sandbox</artifactId>
     <packaging>war</packaging>
-    <version>1.1.25</version>
+    <version>.RELEASE_VERSION.1-SNAPSHOT</version>
     <name>sandbox Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <properties>
