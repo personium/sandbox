@@ -33,7 +33,7 @@ jobs:
     - name: Version validation
       run: |
         VERSION_IN_PROPERTIES_FILE=$(sed -n -e "s/^io\.personium\.core\.version=\(.*\)/\1/p" src/main/resources/personium-unit-config-default.properties)
-        if [ "$VERSION_IN_PROPERTIES_FILE" != "RELEASE_VERSION" ]; then
+        if [ "$VERSION_IN_PROPERTIES_FILE" != "$RELEASE_VERSION" ]; then
           echo "Version in properties file does not match RELEASE_VERSION(\"$VERSION_IN_PROPERTIES_FILE\" and \"$RELEASE_VERSION\")"
           exit 1
         fi
