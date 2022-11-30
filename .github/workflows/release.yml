@@ -89,13 +89,6 @@ jobs:
       if: ${{ env.COMPONENT == 'personium-core' || env.COMPONENT == 'personium-engine'}}
       run: |
         sed -i "s|^\(io\.personium\.core\.version=\).*|\1${NEXT_VERSION}|" src/main/resources/personium-unit-config-default.properties
-    #   git add src/main/resources/personium-unit-config-default.properties
-
-    # - name: Update versions on develop branch
-    #   run: |
-    #     git add pom.xml
-    #     git commit -m "Update to v${NEXT_SNAPSHOT_VERSION}"
-    #     git push origin develop
 
     - name: Create pull request for next release
       uses: peter-evans/create-pull-request@v4
@@ -109,4 +102,4 @@ jobs:
         author: "Personium Bot <personium.io@gmail.com>"
         add-paths: |
           pom.xml
-          src/main/**/*.properties
+          src/main/resources/**/*.properties
